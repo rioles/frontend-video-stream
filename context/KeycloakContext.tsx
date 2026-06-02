@@ -41,7 +41,7 @@ export function KeycloakProvider({ children }: { children: React.ReactNode }) {
   const login = () => keycloak.login({
     redirectUri: process.env.NEXT_PUBLIC_KEYCLOAK_REDIRECT_DASHBOARD
 });
-  const logout = () => keycloak.logout({ redirectUri: NEXT_PUBLIC_APP_URL });
+  const logout = () => keycloak.logout({ redirectUri: process.env.NEXT_PUBLIC_APP_URL });
 
   return (
     <KeycloakContext.Provider value={{ token, isAuthenticated, login, logout, isLoading }}>
