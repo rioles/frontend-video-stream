@@ -1,6 +1,6 @@
 // src/hooks/useUpload.ts
 import { useState, useCallback, useRef } from "react";
-import { uploadFile, abortUpload, UploadProgress, UploadOptions } from "@/services/uploadService";
+import { uploadFile,abortUpload, UploadProgress, UploadOptions } from "@/services/upload/uploadService";
 
 type UploadStatus = "idle" | "uploading" | "success" | "error";
 
