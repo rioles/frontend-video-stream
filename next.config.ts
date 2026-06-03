@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 output: 'standalone',
-basePath: '/view'
+basePath: '/view',
+assetPrefix: '/view',
   /* config options here */
 };
 
