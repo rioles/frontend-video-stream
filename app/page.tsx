@@ -54,6 +54,7 @@ export default function Home() {
   const { isAuthenticated, login, isLoading } = useKeycloak();
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -65,12 +66,10 @@ export default function Home() {
     }, 5000);
     return () => clearInterval(t);
   }, []);
-  
-  const router = useRouter();
-  
+
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
-      router.push("/dashboard"); // 3. Redirection optimisée
+      router.push("/view/dashboard"); // ✅ corrigé
     }
   }, [isLoading, isAuthenticated, router]);
 
@@ -97,7 +96,7 @@ export default function Home() {
         <div style={{ display: "flex", gap: 12 }}>
           {!isAuthenticated ? (
             <>
-              <a href="/register" style={{ padding: "0.5rem 1.25rem", borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", color: "#fff", textDecoration: "none", fontSize: 14, fontWeight: 500, transition: "all 0.2s" }}
+              <a href="/view/register" style={{ padding: "0.5rem 1.25rem", borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", color: "#fff", textDecoration: "none", fontSize: 14, fontWeight: 500, transition: "all 0.2s" }}
                 onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
                 onMouseLeave={e => (e.currentTarget.style.background = "transparent")}>
                 S'inscrire
@@ -109,7 +108,7 @@ export default function Home() {
               </button>
             </>
           ) : (
-            <a href="/dashboard" style={{ padding: "0.5rem 1.25rem", borderRadius: 8, background: "#6C63FF", border: "none", color: "#fff", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
+            <a href="/view/dashboard" style={{ padding: "0.5rem 1.25rem", borderRadius: 8, background: "#6C63FF", border: "none", color: "#fff", fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
               Mon espace →
             </a>
           )}
@@ -144,12 +143,12 @@ export default function Home() {
               <button onClick={login} style={{ padding: "0.85rem 2rem", borderRadius: 10, background: "#6C63FF", border: "none", color: "#fff", fontSize: 16, fontWeight: 700, cursor: "pointer", letterSpacing: "-0.3px" }}>
                 Commencer gratuitement
               </button>
-              <a href="/register" style={{ padding: "0.85rem 2rem", borderRadius: 10, border: "1px solid rgba(255,255,255,0.2)", color: "#fff", fontSize: 16, fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+              <a href="/view/register" style={{ padding: "0.85rem 2rem", borderRadius: 10, border: "1px solid rgba(255,255,255,0.2)", color: "#fff", fontSize: 16, fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
                 Créer un compte
               </a>
             </div>
           ) : (
-            <a href="/dashboard" style={{ padding: "0.85rem 2rem", borderRadius: 10, background: "#6C63FF", color: "#fff", fontSize: 16, fontWeight: 700, textDecoration: "none", display: "inline-block", width: "fit-content" }}>
+            <a href="/view/dashboard" style={{ padding: "0.85rem 2rem", borderRadius: 10, background: "#6C63FF", color: "#fff", fontSize: 16, fontWeight: 700, textDecoration: "none", display: "inline-block", width: "fit-content" }}>
               Accéder à mon espace →
             </a>
           )}
@@ -229,12 +228,12 @@ export default function Home() {
             <button onClick={login} style={{ padding: "0.9rem 2.5rem", borderRadius: 10, background: "#6C63FF", border: "none", color: "#fff", fontSize: 16, fontWeight: 700, cursor: "pointer" }}>
               Se connecter
             </button>
-            <a href="/register" style={{ padding: "0.9rem 2.5rem", borderRadius: 10, border: "1px solid rgba(255,255,255,0.2)", color: "#fff", fontSize: 16, fontWeight: 600, textDecoration: "none" }}>
+            <a href="/view/register" style={{ padding: "0.9rem 2.5rem", borderRadius: 10, border: "1px solid rgba(255,255,255,0.2)", color: "#fff", fontSize: 16, fontWeight: 600, textDecoration: "none" }}>
               Créer un compte gratuit
             </a>
           </div>
         ) : (
-          <a href="/dashboard" style={{ padding: "0.9rem 2.5rem", borderRadius: 10, background: "#6C63FF", color: "#fff", fontSize: 16, fontWeight: 700, textDecoration: "none", display: "inline-block" }}>
+          <a href="/view/dashboard" style={{ padding: "0.9rem 2.5rem", borderRadius: 10, background: "#6C63FF", color: "#fff", fontSize: 16, fontWeight: 700, textDecoration: "none", display: "inline-block" }}>
             Accéder à mon espace →
           </a>
         )}
